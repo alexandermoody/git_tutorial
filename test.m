@@ -1,7 +1,12 @@
-fs = 5;
-Ts = 1/5;
-t = 0:Ts:100
-input = sin((pi/3).*t);
-output = cos((pi/5).*t);
-[impulseResponse, t] = impulse_response(input, output, fs);
-plot(t, impulseResponse);
+
+%Decided to use jb test.m since it also includes a dirac delta
+
+% This tests whether the impulse_response.m function works
+
+fs=10;
+t=-1:1/fs:1;
+x=cos(2*pi*t);    % input signal
+y=3*cos(2*pi*t);  % output signal
+[h,t]=impulse_response(x,y,fs);   % we expect the impulse response to be
+amplitude=(1/fs)*trapz(h)         % a dirac delta with amplitude 3
+
